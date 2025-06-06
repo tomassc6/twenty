@@ -176,6 +176,28 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
   })
   createdBy: ActorMetadata;
 
+  @WorkspaceField({
+    standardId: PERSON_STANDARD_FIELD_IDS.birthday,
+    type: FieldMetadataType.DATE,
+    label: msg`Birthday`,
+    description: msg`Contact's birthday`,
+    icon: 'IconCalendar',
+  })
+  @WorkspaceIsNullable()
+  birthday: Date | null;
+
+  @WorkspaceField({
+    standardId: PERSON_STANDARD_FIELD_IDS.isBirthdayEmailEnabled,
+    type: FieldMetadataType.BOOLEAN,
+    label: msg`Auto Birthday email`,
+    description: msg`Enable birthday email notifications for this contact.`,
+    icon: 'IconMail',
+    defaultValue: false,
+  })
+  @WorkspaceIsNullable()
+  @WorkspaceIsSystem()
+  isBirthdayEmailEnabled: boolean | null;
+
   // Relations
   @WorkspaceRelation({
     standardId: PERSON_STANDARD_FIELD_IDS.company,

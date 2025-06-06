@@ -2,6 +2,8 @@ import { RecordShowRightDrawerActionMenu } from '@/action-menu/components/Record
 import { RecordShowRightDrawerOpenRecordButton } from '@/action-menu/components/RecordShowRightDrawerOpenRecordButton';
 import { ActivityTargetableObject } from '@/activities/types/ActivityTargetableEntity';
 import { CommandMenuPageComponentInstanceContext } from '@/command-menu/states/contexts/CommandMenuPageComponentInstanceContext';
+import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
+import { BirthdayCard } from '@/object-record/record-show/components/BirthdayCard';
 import { CardComponents } from '@/object-record/record-show/components/CardComponents';
 import { FieldsCard } from '@/object-record/record-show/components/FieldsCard';
 import { SummaryCard } from '@/object-record/record-show/components/SummaryCard';
@@ -91,6 +93,13 @@ export const ShowPageSubContainer = ({
     />
   );
 
+  const birthdayCard = (
+    <BirthdayCard
+      objectNameSingular={targetableObject.targetObjectNameSingular}
+      objectRecordId={targetableObject.id}
+    />
+  );
+
   const renderActiveTabContent = () => {
     const activeTab = tabs.find((tab) => tab.id === activeTabId);
     if (!activeTab?.cards?.length) return null;
@@ -112,6 +121,9 @@ export const ShowPageSubContainer = ({
   const displaySummaryAndFields =
     layout && !layout.hideSummaryAndFields && !isMobile && !isInRightDrawer;
 
+  const isRecordPerson =
+    targetableObject.targetObjectNameSingular === CoreObjectNameSingular.Person;
+
   return (
     <TabListComponentInstanceContext.Provider
       value={{ instanceId: tabListComponentId }}
@@ -120,6 +132,7 @@ export const ShowPageSubContainer = ({
         <ShowPageLeftContainer forceMobile={isMobile}>
           {summaryCard}
           {fieldsCard}
+          {isRecordPerson && birthdayCard}
         </ShowPageLeftContainer>
       )}
       <StyledShowPageRightContainer isMobile={isMobile}>
