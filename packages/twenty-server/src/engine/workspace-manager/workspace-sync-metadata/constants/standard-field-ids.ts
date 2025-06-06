@@ -357,6 +357,8 @@ export const PERSON_STANDARD_FIELD_IDS = {
   calendarEventParticipants: '20202020-52ee-45e9-a702-b64b3753e3a9',
   timelineActivities: '20202020-a43e-4873-9c23-e522de906ce5',
   searchVector: '57d1d7ad-fa10-44fc-82f3-ad0959ec2534',
+  birthday: '41a23326-2a18-460c-9422-97625f186bbf',
+  isBirthdayEmailEnabled: '458b7003-4a94-40a9-9291-821866a382a7',
 };
 
 export const TASK_STANDARD_FIELD_IDS = {
